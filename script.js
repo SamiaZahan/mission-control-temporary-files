@@ -1345,7 +1345,7 @@ $(document).ready(function () {
     }
 
     function validURL(myURL) {
-        var res = myURL.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+        var res = myURL.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{6}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
         if (res == null)
             return false;
         else
@@ -2130,13 +2130,13 @@ $(document).ready(function () {
         }
         let paymentMode = $("input[name=payment]:checked").val();
         if (paymentMode == 'bank') {
-            discountResult = discount;
+            discountResult = 0;
         } else if (paymentMode == 'cash') {
             discountResult = discount;
         } else if (paymentMode == 'bkash') {
             discountResult = discount * 0.5;
         } else if (paymentMode == 'card') {
-            discountResult = 0;
+            discountResult = discount;
         }
         couponDiscount = Math.ceil($(".checkout-price-summary .checkout-price-coupon-amount").data("coupon-discount"));
         let totalPrice = (subTotalPrice + deliveryFee + vat) - Math.ceil(discountResult) - Math.ceil(couponDiscount);
@@ -2144,7 +2144,7 @@ $(document).ready(function () {
         $(".checkout-price-subtotal .subtotal-price").html("৳" + bn_bd(subTotalPrice));
         $(".checkout-price-vat .vat-amount").html("৳" + bn_bd(vat));
         $(".checkout-price-delivery .delivery-fee").html("৳" + bn_bd(deliveryFee));
-        $(".checkout-price-discount-amount .discount-amount").html("- ৳" + bn_bd(Math.ceil(discountResult)));
+        $(".checkout-price-discount-amount .discount-amount").html("+ ৳" + bn_bd(Math.ceil(discountResult)));
         $(".checkout-price-total .total-price").data("total-price", totalPrice);
         $(".checkout-price-total .total-price").html("৳" + bn_bd(totalPrice));
         $(".checkout-price-save-amount .save-amount").html("৳" + bn_bd(Math.ceil(camapignCurationDiscount)));
@@ -2537,16 +2537,15 @@ $(document).ready(function () {
 
 
     function updateCartItemQuantity(elm, cond) {
-        let customerData = collectCustomerDataFromForm()
 
         let parentElm = $(elm).closest(".list-item-component");
         let currentQty = Number($(parentElm).data("item-qty"))
         let currentItem = Number($(parentElm).data("item-id"))
 
         if (cond) {
-            if (currentQty < 25) {
+            if (currentQty < 5) {
                 currentQty += 1
-                console.log(customerData.name)
+
                 let placeorder = $.ajax({
                     method: "POST",
                     url: cartQtyAdd + currentItem,
