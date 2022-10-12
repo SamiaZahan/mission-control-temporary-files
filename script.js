@@ -2139,7 +2139,7 @@ $(document).ready(function () {
             discountResult = discount;
         }
         couponDiscount = Math.ceil($(".checkout-price-summary .checkout-price-coupon-amount").data("coupon-discount"));
-        let totalPrice = (subTotalPrice + deliveryFee + vat) - Math.ceil(discountResult) - Math.ceil(couponDiscount);
+        let totalPrice = (subTotalPrice + deliveryFee + vat) + Math.ceil(discountResult) - Math.ceil(couponDiscount);
 
         $(".checkout-price-subtotal .subtotal-price").html("৳" + bn_bd(subTotalPrice));
         $(".checkout-price-vat .vat-amount").html("৳" + bn_bd(vat));
