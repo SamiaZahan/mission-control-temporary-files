@@ -52,7 +52,7 @@ const BannerComponent = {
         {
             name: "1",
             //link: "image/banner/cad/large_1.jpg"
-            likn: "https://i.ibb.co/cTDWZVk/Canada-Big-Banner-01.jpg"
+            link: "https://i.ibb.co/cTDWZVk/Canada-Big-Banner-01.jpg"
         },
         
     ],
