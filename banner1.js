@@ -60,7 +60,7 @@ const BannerComponent = {
         {
           name: "1",
           //link: "image/banner/cad/small_1.jpg"
-          link: "https://i.ibb.co/S6961HM/Canada-Small-Banner.jpg"
+          link: "Canada Small Banner.jpg"
       },
     ],
     // uaeLargeBanners: [
